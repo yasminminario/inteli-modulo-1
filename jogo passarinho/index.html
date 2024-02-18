@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<!--dis a versão do HTML a ser escrita-->
+<html lang="en">
+    <!--língua dos elementos não-editáveis-->
+    <head>
+        <!--providencia informações gerais sobre o documento-->
+        <meta charset="UTF-8">
+        <!--define o conjunto de caracteres do conteúdo do site-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!--ajusta os conteúdos na tela do usuário-->
+        <script src="https://cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.min.js"></script>
+        <!--o min.js é minificado por questão de armazenamento, mas tem a mesma funcionalidade do .js-->
+    
+        <title>yasmin ingrid</title>
+        <!--título do site-->
+        <style>
+            /*inclusão de CSS*/
+            body {
+                /*corpo do documento*/
+                display: flex;
+                /*elemento se torna flex container para manipular elementos filhos desse flex com propriedades novas*/ 
+                justify-content: center;
+                /*quando não é usado todo o espaço horizontal, ajuda a centralizar*/
+                align-items: center;
+                /*alinhamento de elementos*/
+                height: 100vh;
+                /*100vh representa o máximo de altura da página*/
+                margin: 0;
+                /*sem nenhuma margem*/
+            }
+        </style>
+        <!--fim de style-->
+      </head>
+      <!--fim de head-->
+      
+
+
+   <body>
+    <!--corpo do site-->
+    <script>
+        /*código de programação que reúne instruções para que o PC execute tarefas, voltado para funções*/
+     var config = {
+        /*variável de configuração de aspectos de site*/
+        type: Phaser.AUTO,
+        /*usado para especificar o método de renderização no WebGL*/
+        width: 800,
+        /*largura do cenário*/ 
+        height: 600,
+        /*altura do cenário*/
+
+        scene: {
+            preload: preload,
+            /*carregar conteúdos*/
+            create: create,
+            /*usar esses conteúdos*/
+            update: update
+            /*atuliazr e processor a lógica do jogo*/
+         }
+      };
+              
+
+           
+        
+     var game = new Phaser.Game(config);
+     /*usada para instanciar um jogo Phaser com base nas configurações fornecidas, para iniciar e executar o jogo em um ambiente phaser*/
+
+     var passarinho;
+        
+     function preload () {
+        this.load.image ('bg', 'assets2/bg_space.png');
+        /*preload de imagem de background*/
+        this.load.spritesheet ('bird', 'assets2/bird-red.png', { frameWidth: 75, frameHeight: 75 })
+        /*preload do sprite do passáro com largura e altura do frame sendo 75*/
+        
+        }
+                
+        
+     function create () {
+        this.add.image (400, 300, 'bg').setScale(1.2);
+        /*adição do background com as medidas e escala*/
+        passarinho = this.add.sprite (100, 300, 'bird').setScale (1.3);
+        /*adição do passarinho*/
+
+        this.anims.create({
+            /*cria e define animações*/
+            key: 'fly',
+            /*faz a animação voar*/
+            frames: this.anims.generateFrameNumbers ('bird', { start: 0, end: 8 }),
+            /*número de frames*/
+            frameRate: 10,
+            /*frames por segundo*/
+            repeat: -1
+            /*animação em loop*/
+        });
+
+        passarinho.anims.play ('fly', true);
+        /*instrução para início de uma animação*/
+        }
+        
+        
+     function update () {
+        /*eixo x*/
+        if (passarinho.x === 100) {
+            /*se o passarinho estiver em sua posição inicial...*/
+            passarinho.setFlip (false, false);
+            /*não virá-lo*/
+            passarinho.ida = true;
+            /*o passarinho começa a jornada*/
+        }
+
+        if (passarinho.x < 700 && passarinho.ida === true) {
+            /*se o passarinho estiver anterior a posição 700 e tiver ido...*/ 
+            console.log ("o que acontece?");
+            /*saída no console do navegador*/
+            passarinho.x += 5;
+            /*o passarinho ganha mais 5 pontos de posição*/
+        }
+
+        if (passarinho.x === 700) {
+            /*se o passarinho estiver na última posição...*/
+            passarinho.setFlip (true, false);
+            /*o passarinho irá virar e voltar*/
+            passarinho.ida = false;
+            /*como o passarinho estará voltando, a ida será falsa*/
+        }
+
+        if (passarinho.x > 100 && passarinho.ida === false) {
+            /*se o passarinho ainda não tiver chegado no primeiro ponto (100) e ele estiver voltando...*/
+            console.log("e o que acontece agora?");
+            /*saída no console do computador*/
+            passarinho.x -= 5;
+            /*o passarinho perde mais 5 pontos de posição*/
+        }
+
+
+        /*eixo y*/
+        if (passarinho.y === 300) {
+            /*se o passarinho estiver em sua posição inicial...*/
+            passarinho.setFlip (false, false);
+            /*não virá-lo*/
+            passarinho.ida = true;
+            /*o passarinho começa a jornada*/
+
+        }
+        if (passarinho.y < 500 && passarinho.ida === true) {
+            /*se o passarinho estiver anterior a posição 500 e tiver ido...*/  
+            console.log ("o que acontece?");
+            /*saída no console do computador*/
+            passarinho.y += 5;
+            /*o passarinho ganha mais 5 pontos de posição*/
+
+        }
+        if (passarinho.y === 500) {            
+            /*se o passarinho estiver na última posição...*/
+            passarinho.ida = false;
+            /*como o passarinho estará voltando, a ida será falsa*/
+            passarinho.setFlip (true, false);
+        }
+
+        if (passarinho.y > 300 && passarinho.ida === false) {
+            console.log("e o que acontece agora?");
+            passarinho.y -= 5;
+        }
+
+        }
+        
+        </script>
+    
+  </body>
+ 
+</html>
