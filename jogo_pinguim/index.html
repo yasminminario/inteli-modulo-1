@@ -1,0 +1,64 @@
+<!--estrtura padrão do html:-->
+<!doctype html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8" />
+    <title>jogo do pinguim</title>
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.23.0/dist/phaser.js"></script>
+    <!--nome do arquivo das cenas-->
+    <script src="telaJogar.js"></script>
+    <script src="jogoPenguim.js"></script>
+
+    <!--estrutura padrão html:-->
+    <style>
+        body {
+            margin-top: 1px;
+            padding: 0;
+        }
+
+        canvas {
+            border: 1px solid #000000;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div id="game"></div>
+
+    <script type="text/javascript">
+        //configurações das cenas
+        const config = {
+            type: Phaser.AUTO,
+            scale: {
+                mode: Phaser.Scale.FIT
+            },
+            autoCenter: Phaser.Scale.CENTER,
+            width: 600, 
+            height: 600, 
+            backgroundColor: '#add8e6',
+            physics: {
+                default: 'arcade',
+                arcade: {
+                    gravity: { y: 10 },
+                    debug: false 
+                }
+            },
+            parent: "game",
+            dom:{
+               createContainer: true,
+            },
+            //declaração de duas cenas
+            scene: [TelaJogar, JogoPenguim]
+        };
+        //criação de um jogo phaser
+        var game = new Phaser.Game(config);
+        //primeira cena sendo a TelaJogar
+        game.scene.start('TelaJogar');
+    </script>
+
+</body>
+</html>
+
+
