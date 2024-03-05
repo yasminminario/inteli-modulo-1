@@ -1,0 +1,49 @@
+/* Estilo para o formulário de entrada */
+#input-form {
+    padding: 15px;           /* Adiciona espaçamento interno de 15 pixels */
+    max-width: 270px;        /* Define a largura máxima do formulário como 270 pixels */
+    overflow: visible;       /* Permite que o conteúdo exceda os limites do contêiner */
+    position: auto;          /* Posicionamento automático (pode ser redundante, pois 'auto' é o valor padrão) */
+}
+
+/* Estilo para as entradas de texto no formulário */
+#input-form input {
+    padding: 10px;           /* Adiciona espaçamento interno de 10 pixels nas entradas de texto */
+    font-size: 1.2rem;       /* Define o tamanho da fonte como 1.2 rem */
+    width: 250px;            /* Define a largura das entradas de texto como 250 pixels */
+    border-style: none;      /* Remove a borda das entradas de texto */
+    background-color: #8ecbf4; /* Define a cor de fundo das entradas de texto como azul claro */
+    color: #ffffff;           /* Define a cor do texto como branco */
+    overflow: visible;       /* Permite que o conteúdo exceda os limites das entradas de texto */
+}
+
+/* Estilo para o texto de espaço reservado nas entradas de texto */
+::placeholder {
+    color: rgb(225, 227, 198); /* Define a cor do texto de espaço reservado como uma tonalidade de cinza */
+}
+
+/* Estilo para remover a borda de foco ao clicar nas entradas de texto e área de texto */
+textarea:focus, input:focus {
+    outline: none;           /* Remove a borda de foco ao clicar nas entradas de texto e área de texto */
+}
+
+/* Estilo para a animação do sublinhado gradiente */
+.webflow-style-input::after {
+    content: "";             /* Adiciona um conteúdo vazio após o elemento com a classe 'webflow-style-input' */
+    position: absolute;       /* Posicionamento absoluto em relação ao contêiner pai */
+    left: 15px;               /* Distância do lado esquerdo do contêiner pai */
+    bottom: 15px;             /* Distância do lado inferior do contêiner pai */
+    right: 0px;               /* Distância do lado direito do contêiner pai */
+    height: 2px;              /* Altura do sublinhado */
+    background: linear-gradient(to right, #B294FF, #57E6E6, #FEFFB8, #57E6E6, #B294FF, #57E6E6); /* Gradiente de cores */
+    background-size: 200% auto; /* Tamanho do gradiente */
+    animation: gradient 3s linear infinite; /* Adiciona uma animação chamada 'gradient' com duração de 3 segundos, linear e infinita */
+    width: 300px;             /* Largura do sublinhado */
+}
+
+/* Animação para o sublinhado gradiente */
+@keyframes gradient {
+    to {
+        background-position: 200% center; /* Move a posição de fundo do gradiente para a direita, criando a animação */
+    }
+}

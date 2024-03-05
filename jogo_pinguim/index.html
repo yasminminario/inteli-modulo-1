@@ -1,15 +1,20 @@
-<!--estrtura padrão do html:-->
-<!doctype html> 
-<html lang="en"> 
-<head> 
+<!-- Estrutura padrão do HTML -->
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Configurações do documento, incluindo a codificação e o título -->
     <meta charset="UTF-8" />
     <title>jogo do pinguim</title>
+
+    <!-- Inclusão da biblioteca Phaser -->
     <script src="https://cdn.jsdelivr.net/npm/phaser@3.23.0/dist/phaser.js"></script>
-    <!--nome do arquivo das cenas-->
+
+    <!-- Inclusão dos arquivos das cenas e estilos -->
     <script src="telaJogar.js"></script>
     <script src="jogoPenguim.js"></script>
 
-    <!--estrutura padrão html:-->
+    <!-- Estilos CSS para o corpo do HTML -->
     <style>
         body {
             margin-top: 1px;
@@ -25,40 +30,46 @@
 
 <body>
 
+    <!-- Div que servirá como contêiner para o jogo -->
     <div id="game"></div>
 
+    <!-- Configuração e inicialização do jogo Phaser -->
     <script type="text/javascript">
-        //configurações das cenas
+        // Configurações do jogo Phaser
         const config = {
             type: Phaser.AUTO,
             scale: {
                 mode: Phaser.Scale.FIT
             },
             autoCenter: Phaser.Scale.CENTER,
-            width: 600, 
-            height: 600, 
-            backgroundColor: '#add8e6',
+            width: 600,
+            height: 600,
+            backgroundColor: '#add8e6', // Cor de fundo
             physics: {
                 default: 'arcade',
                 arcade: {
-                    gravity: { y: 10 },
-                    debug: false 
+                    gravity: { y: 10 }, // Gravidade aplicada no eixo Y
+                    debug: false // Modo de depuração desativado
                 }
             },
             parent: "game",
-            dom:{
-               createContainer: true,
+            dom: {
+                createContainer: true,
             },
-            //declaração de duas cenas
+            // Declaração de duas cenas
             scene: [TelaJogar, JogoPenguim]
         };
-        //criação de um jogo phaser
+
+        // Criação de uma instância do jogo Phaser
         var game = new Phaser.Game(config);
-        //primeira cena sendo a TelaJogar
+
+        // Inicialização da primeira cena, que é a TelaJogar
         game.scene.start('TelaJogar');
     </script>
 
 </body>
+
 </html>
+
 
 

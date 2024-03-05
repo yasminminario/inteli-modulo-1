@@ -1,25 +1,26 @@
-//conexão da declaração da cena por meio da estrutura de classe
+// Conexão da declaração da cena por meio da estrutura de classe
 class TelaJogar extends Phaser.Scene {
 
     constructor() {
         super({
             key: 'TelaJogar',
-            backgroundColor: '#000', 
+            backgroundColor: '#000', // Cor de fundo da cena
         });
     }
 
     preload() {
-        this.load.html('form', 'form/form.html'); 
-        this.load.image('start', 'assets/start.png');
+        // Carregamento de recursos necessários
+        this.load.html('form', 'form/form.html'); // Carrega o formulário HTML
+        this.load.image('start', 'assets/start.png'); // Carrega a imagem do botão "start"
     }
 
     create() {
-        //configurações de teclas
+        // Configurações de teclas
         this.cursors = this.input.keyboard.createCursorKeys();
         this.returnKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER);
         this.nameFilled = false;
 
-        //criação do texto "hello"
+        // Criação do texto "Hello"
         var text = { height: 20, padding: 15, content: "Hello " }
         this.message = this.add.text(
             this.game.config.width / 2,
@@ -31,16 +32,18 @@ class TelaJogar extends Phaser.Scene {
             }
         ).setOrigin(0.5);
 
-        //criação de espaço para adição do nome
+        // Criação do espaço para adição do nome
         var inputSize = { width: 270, height: 42, padding: 15 };
         var inputButton = { width: 30, height: 12 };
         var inputCoords = {
             xposition: (this.game.config.width - inputSize.width) / 2 - inputButton.width,
             yposition: (this.game.config.height - inputSize.height - inputSize.padding * 2) / 2,
         };
+
+        // Relação com o arquivo form para adição de um quadrado que guarde um input
         this.inputName = this.add.dom(inputCoords.xposition, inputCoords.yposition).createFromCache('form').setOrigin(0, 0);
 
-
+        // Criação do "text button"
         const nameOkTextButton = this.add.text(
             inputCoords.xposition + inputSize.width + 13,
             inputCoords.yposition + inputButton.height + 2, ">", {
@@ -51,28 +54,29 @@ class TelaJogar extends Phaser.Scene {
         );
         nameOkTextButton.setInteractive();
 
+        // Event listener para a tecla "Enter"
         this.returnKey.on("down", event => {
             this.updateName(this.inputName);
         });
 
+        // Event listener para o "text button"
         nameOkTextButton.on('pointerdown', () => {
             this.updateName(this.inputName);
         });
 
-        //adição de funcionalidade (trocar de cena) ao botão
+        // Adição de funcionalidade (trocar de cena) ao botão
         this.playBt = this.add.image(this.game.config.width / 2 - 50, this.game.config.height / 4 * 3, 'start')
             .setScale(.2).setOrigin(0, 0).setInteractive().setVisible(false);
- 
+
         this.playBt.on('pointerdown', function () {
             if (this.nameFilled) {
                 this.game.highScore = 0;
                 this.scene.start('JogoPenguim', this.game);
             }
-        }, this);            
-
+        }, this);
     }
 
-    //atualização da cena com adição do nome
+    // Atualização da cena com adição do nome
     updateName(inputNameElement) {
         let name = inputNameElement.getChildByName("name");
         if (name.value != "") {
